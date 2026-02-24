@@ -1,0 +1,75 @@
+/* Refined site styles — clean, consistent, modern */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+:root{
+  --bg:#fbfcff;
+  --muted:#6b7280;
+  --text:#071133;
+  --accent:#6f2dbd; /* primary purple */
+  --accent-2:#b03cff;
+  --card:#ffffff;
+  --glass: rgba(255,255,255,0.6);
+  --container:1200px;
+  --header-height: 88px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.45;background:var(--bg);color:var(--text);margin:0}
+.site-wrap{max-width:var(--container);margin:0 auto;padding:20px;padding-top:calc(var(--header-height) + 20px)}
+/* Topbar + Header */
+.topbar{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:8px 14px;text-align:center;font-weight:600;border-radius:6px}
+.site-header{position:fixed;top:12px;left:50%;transform:translateX(-50%);width:calc(100% - 40px);max-width:var(--container);background:var(--card);box-shadow:0 10px 30px rgba(20,24,40,0.06);border-radius:12px;padding:6px 10px;z-index:90}
+.header-inner{display:flex;align-items:center;gap:16px;padding:8px 14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.brand-logo{width:56px;height:56px;border-radius:10px;object-fit:cover}
+.brand-text strong{font-size:1.05rem;color:var(--accent)}
+.brand-text small{display:block;color:var(--muted);font-size:0.82rem}
+.main-nav{display:flex;gap:12px;margin-left:12px}
+.main-nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600;font-size:0.95rem}
+.main-nav a:hover{background:rgba(111,45,189,0.06);color:var(--accent)}
+.header-cta{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none;border:none;cursor:pointer}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 30px rgba(176,60,255,0.08)}
+.btn-secondary{background:transparent;border:1px solid rgba(111,45,189,0.14);color:var(--accent)}
+/* Hero (image only) */
+.hero{display:block;margin-top:12px}
+.hero-visual img{width:100%;height:340px;object-fit:cover;border-radius:12px;display:block;box-shadow:0 20px 50px rgba(20,24,40,0.06)}
+/* Sections */
+.section-inner{padding:36px 0}
+h2{font-size:1.15rem;margin-bottom:6px}
+.lede{color:var(--muted);margin-bottom:14px}
+/* AI cards */
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 30px rgba(20,24,40,0.04);transition:transform .18s ease, box-shadow .18s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(20,24,40,0.08)}
+.card-head{font-weight:700;margin-bottom:10px}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap}
+.card input, .card select{padding:10px;border-radius:8px;border:1px solid rgba(16,24,40,0.06)}
+/* Universities list */
+.universities-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.university-list-item{display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfbff);border:1px solid rgba(16,24,40,0.04);transition:transform .18s ease,box-shadow .18s ease}
+.university-list-item:hover{transform:translateY(-6px);box-shadow:0 18px 45px rgba(14,20,40,0.06)}
+.uni-image{width:140px;flex-shrink:0;border-radius:8px;overflow:hidden}
+.uni-image img{width:100%;height:90px;object-fit:cover;display:block}
+.uni-details{flex:1}
+.uni-details h3{margin:0 0 6px 0;font-size:1.05rem;color:var(--accent)}
+.uni-details p{margin:0;color:var(--muted);font-size:0.92rem}
+.uni-tags{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+.badge{padding:6px 10px;border-radius:10px;font-weight:700;font-size:0.78rem;background:rgba(111,45,189,0.06);color:var(--accent)}
+.badge-open{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff}
+.uni-actions{margin-left:auto;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.select-btn{padding:8px 12px;border-radius:8px;border:1px solid rgba(16,24,40,0.06);background:transparent;cursor:pointer}
+/* Footer */
+.site-footer{margin-top:28px;padding:20px;text-align:center;color:var(--muted)}
+/* Responsive */
+@media (max-width:980px){
+  .header-inner{flex-wrap:wrap;align-items:center}
+  .main-nav{order:3;width:100%;display:flex;justify-content:center;gap:10px}
+  .hero-visual img{height:220px}
+  .universities-list{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .uni-actions{flex-direction:row;align-items:center}
+}
+@media (max-width:520px){
+  .brand-text small{display:none}
+  .brand-logo{width:48px;height:48px}
+  .site-wrap{padding:12px;padding-top:calc(var(--header-height) + 12px)}
+}

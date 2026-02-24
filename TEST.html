@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Email - College Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Test Email Form</h1>
+        <p style="text-align: center; color: #666;">Fill and submit to test email sending</p>
+        
+        <form id="testForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <input type="text" id="college" placeholder="College Name" required>
+            <textarea id="message" placeholder="Your Message" rows="5"></textarea>
+            <button type="submit">Send Test Email</button>
+        </form>
+        
+        <div id="status" class="status" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const college = document.getElementById('college').value;
+            const message = document.getElementById('message').value;
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.style.display = 'block';
+            statusDiv.textContent = 'Sending...';
+            statusDiv.className = 'status';
+            
+            try {
+                const response = await fetch('https://formspree.io/f/xyzgjjzg', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        college: college,
+                        message: message,
+                        '_subject': `Test Email from ${name}`
+                    })
+                });
+
+                if (response.ok) {
+                    statusDiv.innerHTML = '✅ <strong>Success!</strong><br>Email sent to nishedk076@gmail.com';
+                    statusDiv.className = 'status success';
+                    document.getElementById('testForm').reset();
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                statusDiv.innerHTML = '❌ <strong>Error!</strong><br>Failed to send email';
+                statusDiv.className = 'status error';
+            }
+        });
+    </script>
+</body>
+</html>
